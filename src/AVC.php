@@ -32,7 +32,7 @@ namespace EZAMA{
         {
             $countKeys=array();
             $response=array();
-            $simple = true;
+            $simple=true;
 
             if ((is_object($mixed)&&key_exists('Traversable', class_implements($mixed)))) {
                 self::hNALoop($mixed, $simple, $response, $countKeys);
@@ -47,7 +47,7 @@ namespace EZAMA{
             $i=0;
             foreach ($mixed as $k=>$val) {
                 if (!is_int($val)&&!is_string($val)) {
-                    $simple = false;
+                    $simple=false;
                 }
                 if (($offset=array_search($val, $response, true))===false) {
                     $response[$i]=$val;
@@ -60,42 +60,40 @@ namespace EZAMA{
         
         private static function handleArray($array, &$countKeys, &$response, &$simple)
         {
-            $i = 0;
-            $countKeys = array();
-            $simple = true;
-            $callback = function ($carry, $item) use (&$i,&$countKeys ,&$simple) {
+            $i=0;
+            $countKeys=array();
+            $simple=true;
+            $callback=function($carry, $item) use (&$i, &$countKeys, &$simple) {
                 if (!is_array($carry)) {
-                    $carry = array();
+                    $carry=array();
                 }
                 if (!is_int($item)&&!is_string($item)) {
-                    $simple = false;
+                    $simple=false;
                 }
-                if (false === $k = array_search($item, $carry, true)) {
-                    $carry[$i] = $item;
-                    $countKeys[$i++] = 1;
+                if (false===$k=array_search($item, $carry, true)) {
+                    $carry[$i]=$item;
+                    $countKeys[$i++]=1;
                 } else {
                     $countKeys[$k]++;
                 }
                 return $carry;
             };
-            $response = array_reduce($array, $callback);
+            $response=array_reduce($array, $callback);
         }
         
         private static function getIterator($simple, $response, $countKeys)
         {
-            return $simple?
-            new AVCIterator(array_combine($response, $countKeys), null):
-            new AVCIterator($response, $countKeys);
+            return $simple ?
+            new AVCIterator(array_combine($response, $countKeys), null) : new AVCIterator($response, $countKeys);
         }
         
         private static function getResponse($simple, $response, $countKeys)
         {
-            $callback = function ($value, $count) {
-                return array($value,$count);
+            $callback=function($value, $count) {
+                return array($value, $count);
             };
-            return $simple?
-            array_combine($response, $countKeys):
-            array_map($callback, $response, $countKeys);
+            return $simple ?
+            array_combine($response, $countKeys) : array_map($callback, $response, $countKeys);
         }
     }
 }
