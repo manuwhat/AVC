@@ -43,7 +43,7 @@ namespace EZAMA{
             if ($this->isSimple()) {
                 unset($this->keys[$key]);
             } else {
-                unset($this->container[$k=array_search($key, $this->keys, true)],$this->keys[$k]);
+                unset($this->container[$k=array_search($key, $this->keys, true)], $this->keys[$k]);
             }
         }
         
@@ -77,7 +77,7 @@ namespace EZAMA{
                 reset($this->keys);
             } else {
                 reset($this->keys);
-				reset($this->container);
+                reset($this->container);
             }
         }
         
@@ -101,8 +101,8 @@ namespace EZAMA{
             if ($this->isSimple()) {
                 return $this->keys;
             } else {
-                $callback = function ($value, $count) {
-                    return array($value,$count);
+                $callback=function($value, $count) {
+                    return array($value, $count);
                 };
                 return array_map($callback, $this->keys, $this->container);
             }
