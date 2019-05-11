@@ -1,6 +1,9 @@
 AVC
 ===
-
+[![Build Status](https://travis-ci.org/manuwhat/AVC.svg?branch=master)](https://travis-ci.org/manuwhat/AVC)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/manuwhat/AVC/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/manuwhat/AVC/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/manuwhat/AVC/badges/build.png?b=master)](https://scrutinizer-ci.com/g/manuwhat/AVC/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/manuwhat/AVC/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 
 Extends  PHP array_count_values native function  to count any PHP type value in iterable variables
