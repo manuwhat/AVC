@@ -16,9 +16,8 @@ namespace EZAMA{
         
         public function offsetSet($key, $value)
         {
-            isset($keys);
+            isset($key);
             isset($value);
-            return false;
         }
         
         public function offsetGet($key)
@@ -75,18 +74,19 @@ namespace EZAMA{
         public function rewind()
         {
             if ($this->isSimple()) {
-                return reset($this->keys);
+                reset($this->keys);
             } else {
-                return reset($this->keys)&&reset($this->container);
+                reset($this->keys);
+				reset($this->container);
             }
         }
         
         public function next()
         {
             if ($this->isSimple()) {
-                return next($this->keys);
+                next($this->keys);
             } else {
-                return next($this->keys)&&next($this->container);
+                next($this->keys)&&next($this->container);
             }
         }
         

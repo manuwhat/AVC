@@ -19,7 +19,7 @@ namespace EZAMA{
 
         public static function countDiffValues($mixed)
         {
-            return count(self::countValues($mixed));
+            return count((array)self::countValues($mixed));
         }
 
         public static function valueCount($value, $mixed)
