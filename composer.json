@@ -1,0 +1,40 @@
+{
+    "name": "manuwhat/avc",
+    "type": "library",
+    "description": "avc - extends  PHP array_count_values native function  to count any PHP type value in iterable variables ",
+    "keywords": [
+	    "array_count_values",
+        "count",
+		"value",
+		"type",
+        "iterable",
+		"array",
+		"function",
+		"object"	
+    ],
+    "homepage": "https://github.com/manuwhat/avc",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Akpé Aurelle Emmanuel Moïse Zinsou",
+            "email": "leizmo@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.5.0"
+    },
+   
+    "autoload": {
+        "psr-4": {
+            "EZAMA\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EZAMA\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        
+    }
+}
