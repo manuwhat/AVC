@@ -1,7 +1,7 @@
 <?php
 namespace{
     require($dir=dirname(__DIR__)).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'AVC.php';
-    require $dir.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'AVCiterator.php';
+    require $dir.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'AVCIterator.php';
     require $dir.DIRECTORY_SEPARATOR.'AVC.php';
 
     use PHPUnit\Framework\TestCase;
