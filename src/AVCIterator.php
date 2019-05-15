@@ -122,22 +122,16 @@ namespace EZAMA{
                 case "resource":
                 case "resource(closed)":
                     throw new \InvalidArgumentException("Resource type detected while trying to prepare JsonSerialize ");
-                    break;
                 case "object":
-                    if (is_object($value)) {
-                        if (in_array('Serializable', class_implements(get_class($value)))) {
-                            try {
-                                $serialize=serialize($value);
-                                return $serialize;
-                            } catch (\Exception $e) {
-                                throw new \InvalidArgumentException($e->getMessage());
-                            }
+                    if (in_array('Serializable', class_implements(get_class($value)))) {
+                        try {
+                            $serialize=serialize($value);
+                            return $serialize;
+                        } catch (\Exception $e) {
+                            throw new \InvalidArgumentException($e->getMessage());
                         }
-                        return serialize($value);
-                        break;
                     }
-                    throw new \InvalidArgumentException("Invalid object type detected while trying to prepare JsonSerialize ");
-                    
+                    return serialize($value);
                 default:
                     return $value;
                 
