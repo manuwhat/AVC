@@ -17,9 +17,9 @@ namespace EZAMA{
         public function offsetSet($key, $value)
         {
             if ($this->isSimple()) {
-                $this->keys[$key]=is_int($value)?$value:0;
+                $this->keys[$key]=is_int($value) ? $value : 0;
             } else {
-                $this->container[array_search($key, $this->keys, true)]=is_int($value)?$value:0;
+                $this->container[array_search($key, $this->keys, true)]=is_int($value) ? $value : 0;
             }
         }
         
@@ -104,7 +104,7 @@ namespace EZAMA{
             if ($this->isSimple()) {
                 return $this->keys;
             } else {
-                $callback=function ($value, $count) {
+                $callback=function($value, $count) {
                     return array(self::prepareJson($value), $count);
                 };
                 return array_map($callback, $this->keys, $this->container);

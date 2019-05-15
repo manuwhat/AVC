@@ -63,7 +63,7 @@ namespace EZAMA{
             $i=0;
             $countKeys=array();
             $simple=true;
-            $callback=function ($carry, $item) use (&$i, &$countKeys, &$simple) {
+            $callback=function($carry, $item) use (&$i, &$countKeys, &$simple) {
                 if (!is_array($carry)) {
                     $carry=array();
                 }
@@ -89,7 +89,7 @@ namespace EZAMA{
         
         private static function getResponse($simple, $response, $countKeys)
         {
-            $callback=function ($value, $count) {
+            $callback=function($value, $count) {
                 return array($value, $count);
             };
             return $simple ?
