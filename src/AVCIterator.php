@@ -16,8 +16,11 @@ namespace EZAMA{
         
         public function offsetSet($key, $value)
         {
-            isset($key);
-            isset($value);
+            if ($this->isSimple()) {
+                $this->keys[$key]=is_int($value)?$value:0;
+            } else {
+                $this->container[array_search($key, $this->keys, true)]=is_int($value)?$value:0;
+            }
         }
         
         public function offsetGet($key)
@@ -25,7 +28,7 @@ namespace EZAMA{
             if ($this->isSimple()) {
                 return $this->keys[$key];
             } else {
-                return $this->keys[array_search($key, $this->keys, true)];
+                return $this->container[array_search($key, $this->keys, true)];
             }
         }
         
@@ -101,7 +104,7 @@ namespace EZAMA{
             if ($this->isSimple()) {
                 return $this->keys;
             } else {
-                $callback=function($value, $count) {
+                $callback=function ($value, $count) {
                     return array($value, $count);
                 };
                 return array_map($callback, $this->keys, $this->container);
@@ -111,6 +114,36 @@ namespace EZAMA{
         public function isSimple()
         {
             return $this->simple;
+        }
+        
+        private static function prepareJson($value)
+        {
+            switch (gettype($value)) {
+                case "resource":
+                case "resource(closed)":
+                    throw new \InvalidArgumentError("Resource type detected while trying to prepare JsonSerialize ");
+                    break;
+                case "object":
+                    if (is_object($value)) {
+                        if (in_array('Serializable', class_implements(get_class($value)))) {
+                            try {
+                                $serialize=serialize($value);
+                                return $serialize;
+                            } catch (Exception $e) {
+                                throw new \InvalidArgumentError($e->getMessage());
+                            }
+                        }
+                        return serialize($value);
+                        break;
+                    }
+                    throw new \InvalidArgumentError("Invalid object type detected while trying to prepare JsonSerialize ");
+                    break;
+                    
+                default:
+                    return $value;
+                    break;
+                
+            }
         }
     }
 }
