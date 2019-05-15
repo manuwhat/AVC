@@ -105,7 +105,7 @@ namespace EZAMA{
                 return $this->keys;
             } else {
                 $callback=function ($value, $count) {
-                    return array($value, $count);
+                    return array(self::prepareJson($value), $count);
                 };
                 return array_map($callback, $this->keys, $this->container);
             }
@@ -121,7 +121,7 @@ namespace EZAMA{
             switch (gettype($value)) {
                 case "resource":
                 case "resource(closed)":
-                    throw new \InvalidArgumentError("Resource type detected while trying to prepare JsonSerialize ");
+                    throw new \InvalidArgumentException("Resource type detected while trying to prepare JsonSerialize ");
                     break;
                 case "object":
                     if (is_object($value)) {
@@ -129,19 +129,17 @@ namespace EZAMA{
                             try {
                                 $serialize=serialize($value);
                                 return $serialize;
-                            } catch (Exception $e) {
-                                throw new \InvalidArgumentError($e->getMessage());
+                            } catch (\Exception $e) {
+                                throw new \InvalidArgumentException($e->getMessage());
                             }
                         }
                         return serialize($value);
                         break;
                     }
-                    throw new \InvalidArgumentError("Invalid object type detected while trying to prepare JsonSerialize ");
-                    break;
+                    throw new \InvalidArgumentException("Invalid object type detected while trying to prepare JsonSerialize ");
                     
                 default:
                     return $value;
-                    break;
                 
             }
         }
